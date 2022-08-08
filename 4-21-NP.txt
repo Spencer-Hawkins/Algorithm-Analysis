@@ -1,0 +1,64 @@
+Outline:
+	- elements of NP
+	- P as subset of NP
+	- NP-Completeness
+
+Greedy algs through linear programming but not include polynomial time reductions
+
+	
+
+
+	-Elements of NP
+		-Problem: Vertex Cover (showing it is an element of NP)
+		-VC: Input (Graph G, and int k) Returns (True iff there is vertex cover of size k)
+			1- certificate C: a Vertex Cover S, |S|=O(|V|)
+			2- check S is subset of V, O(n^2)
+				check |S| <= k       O(n)
+				For All(u, v) elements of E: U is element of S or v is element of S O(m*n)
+			3- Yes, see above that all steps run in polynomial time.
+			4- V(G, K, s)=yes <=> G, k is yes AND C is valid
+			  (=>)  (instead of showing a implies b, we show not b implies not a)
+				Not (G, k, is yes) or not (C is valid)
+					V(verifier) checks G, k and C 
+					V returns no
+			  (<=)
+				Not A: Verifier returns no. This one of our chekcs fails. Therefore G, K no or C is invalid
+
+
+	Ex NP, Decision version of minimum spanning tree:
+	    Problem: Inputs-- G, W, k --Returns: true iff there is a MST with weight at most k
+		1) Certificate C: a S MST of G
+ 		2) Verifier: Check--
+			-The sum of all edges in S <= k O(m) (sum all elements in linear time)
+			-For all vertices in G, they are in S O(n^2) worst case run through the vertices in each like an array
+			-The number of edges in tree is equal to n-1
+			-all vertices t are reachable by an arbitrary vertex s with an s,t path -- Runtime-use BFS and mark all vertices as reached if traversed, compare reached vertices to orginal and make sure there ic complete overlap
+		3) Yes, see above
+		
+
+
+	Theorem: P is subset of NP
+		-For any porblem A element of P, there is a polynomial-time algorithm F that correctly solves any instance a element of A
+		-Show A is element of NP (this line of reasoning works for any arbirtrary A within P)
+			1- "yes"
+			2- V checks C=="yes" runs F 
+			3-Yes, constant + polynomial : verifier runs in polynomial time since all algorithms F run in polynomial time
+			4- V yes <=> a is element of A is yes AND C is valid.
+				-invalid C => output no
+				-a is no-instance, fails AND check and will output no since we run the actual algorithm F
+				-a yes-instance => algorithm F will produce a yes answer
+				
+ 
+	Conjecture: P != NP
+
+		B <=_p A, then B is at least as hard as A.
+
+		NP Hard
+       	   -a problem is NP Hard if all of those problmems could be reduced to new problem
+		   Def:
+			A problem A is NP-hard if for all B elements of NP, B<=_p A
+		   Def:
+			Problem A is NP-complete if A is element of NP and A is NP-hard
+
+		
+	

@@ -1,0 +1,34 @@
+Outline:
+- Dfs->tree
+- DAGs
+- Topological Sort
+
+
+
+	DFS to produce a tree:
+		-tree edge -traversed-solid line
+		-back edge -led to an already visited node-dashed edge
+
+
+
+	DAGs-Directed Acyclice Graphs:
+		-do not have cycle
+		-encode precedence relationships or dependencies
+		-every DAG has a vertex with no out-edges (out-degree: 0)
+		
+
+	Topological Ordering:
+		-a topological ordering is a list of each vertex v in V such that for all (u,x) edges in E, u proceeds x in the list
+
+	Algorithm#1(for making topological ordering):
+		1-add a vertex with in-degree of zero to the ordering
+		2-remove vertex and its outgoing edges from G
+		3-repeat until graph is empty 
+
+
+	Algorithm#2(for topological sorting)
+		1-Finds a sourece node (in-degree 0)
+		2-Modify DFS-add a counter
+		3-Build a tree starting with source -annotate start and finish
+		4-Produce topological ordering in reverse order of finishing number
+

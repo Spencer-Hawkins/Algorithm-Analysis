@@ -1,0 +1,61 @@
+-Strongly-ConnectedComponents
+-BFS Proof
+-Dfs->Tree
+
+
+
+RandomDefinitons:
+	Adjacency- vertices u, v, are adjacent if (u, v) exists in E
+	Path- is a sequence of vertices (v1, v2, ...vk) where (vi, vi+1) exist in E
+	Simple- a path is simple if it has no repeated vertices 
+	Cycle- a path is a cycle if v1=vk and k>1
+	connected-
+		[undirected] -the connected component of v is {u |u connected to v}
+		[directed] -vertices u,v are mutually reachable if there exists path u->v and v->u
+	StronglyConnectedComponent- the set of vertices that are mutually reachable
+
+
+Strongly-ConnectedComponents:
+
+
+
+
+	defsc_component_alt(G, s):
+		G_rev=(v, {(v,u) for each (u, v) exists E})
+		from_s=BFS_component(G,s)
+		to_s(BFS_compnent(G_rev, s)
+		return intersection between from_s and to_s
+	
+	0(n+m)
+	2O(n+m)
+	n(2(n+m)
+	O(n(n+m))
+
+
+
+
+BFS Proof:
+
+
+	Lemma. There exists path s->t in graph G iff BFS(G,s) visits t
+	
+	=> by induction on path length
+	   Base Case: |path|=0, path=[s], BFS initially starts at the node S and automatically adds it to the set of visited nodes
+
+	   	Inductive hypothesis: BFS(G, s) visits t when there's a length k s->t path 
+		   
+		Inductive Step: suppose there exists a length- (k+1) s-> path Label Vk-kh vertex on path
+				-there's a leongth-k path s->Vk
+				-by inductive hypothesis, BFS visits Vk
+				-BFS enquques t b/c (Vk, t) exists in E
+				-BFS dequeues t @ next layer, visits t
+
+	<= BFS visting a node on a certain level implies there exists a path
+		Base Case: path[s] exists in G
+		Inductive hypothesis: all previously visited vertices x in V have a path s->X
+		Inductive step: -BFS visits t b/c it was a neighbor of some v that was dequeued
+				-v was visited when it was enqueued
+				-by indeuctive hypothesis, there exists path s->v
+				-b/c (v,t) is element of E, there exists an s->t path
+
+Dfs->Tree:

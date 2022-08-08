@@ -1,0 +1,35 @@
+Outline:
+-IS NP-Hard
+-Approximation Algs
+-course feedback surveys
+
+
+	IS NP-Hard:
+		-...
+
+
+	Approximation Algs:
+		-run in polynomial time and
+		-garuanteed that it gives some answer that is a given factor off from the optimal answer
+		-approximation ratio of alg A:
+			Alpha_A = max (A(I)/Opt(I))
+		-goal of finding solution with lowest approximation ratio
+		
+
+		Minimization-VC
+			Alg A:
+			-pick edges disjoint from those already chosen
+			-stop when no more canbe chosen
+			-select endpoints of each of those vertices to create vertex cover
+
+		Proof:
+			-matching-subset of edgew w/ no common vertices
+			-maximal matching - no more edges can be added
+			-and VC in G >= # of edges in any matching in G
+			-S must be a vertex cover
+				-if not, There is an edge e not covered, this implies M is not maximal and our algorithm would'n't have stopped
+			-S has 2|M| vertices 
+				-VC >= any |M|, |S| = 2|M| vertices
+					-Alpha_a <= (2|M|/|M|) implies Alpha_a <= 2
+
+

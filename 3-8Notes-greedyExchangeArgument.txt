@@ -1,0 +1,79 @@
+Overview:
+-exchange argument proofs
+-logistics
+-recap
+
+	Exchange argument proofs:
+		1-removing gaps only improves lateness
+		2-a gapless schedule w/ any inversion has a back to back inversion
+		3-swapping back-to-back inversion only improves lateness
+		4-swapping back-to-back inversions decreases total number of inversions
+		5-swapping back-to-back inversions with teh same deadline doesn't change lateness
+		(note- five facts above must be proven)
+		Thm. A greedy schedule ordered by deadline is optimal.
+		With Facgs 1-5, can take any schedule transform it to a greedy schedule
+			1- we remove gaps
+			2- swap back to back inversions untill there are no more
+			3- swap same-deadline requests as needed
+			Becuase no change makes schedule worse, greedy is at least as good as any other => optimal
+		
+
+		3-swapping back-to-back inversion only improves lateness
+			-the max lateness of rj and ri in#1 is max(0, d_j-f)
+			-if orifianally 0, lateness in #2 is also 0.
+			-if it is d_j-f. max lateness in #2 is 0, f'-dj, or f-d_i
+			-f'-d_j
+
+
+	Recap: Algorithms-application, correctness, running time
+		-problems
+			-stable matching- Gale-Shapley
+		-Big O (upper bound), Omega (lower bound), and Theta (tight bound)
+		-priority queues and heaps
+		-loop invariant as proof technique
+		-divide and conqueur algorithm (alg design approach)
+			-look at reccurence analysis along with it
+				-recurence analysis
+					-tree method
+					-substitution
+					-master theorem
+		-graphs
+			-directed, and undirected
+			-DAGs (review this)
+		-Connectivity, paths, etc...
+			-BFS, DFS
+			-topological sort
+
+	
+		-greedy algs
+			-stays ahead
+			-greedy exchange argument
+			-minimum spanning trees
+
+
+	
+
+
+	-Minum Spanning Trees (MSTs)
+		-subgraph (V, T) that is connected
+		-such that T is subset of edges and number of edges is n-1
+		-minimum summed edge weights
+		-Theorem[Cut Property] Let S subset of of V be a strict, non empty subset of the vertices in G
+		-Let e=(u, v) be the unique cheapest edge with u element S and v element of V
+		Then ANY minimum spanning tree of G must contain edge e
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

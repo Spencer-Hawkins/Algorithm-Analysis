@@ -1,0 +1,43 @@
+Outline: 
+-NP-Complete
+-IS is NP-hard
+
+
+	NP-Complete:
+		-PRoblem A is np-complete if it is in class NP and NP-hard
+	   	NP-hard:
+			-A problem A is NP-hard if for all problems B in NP, B is <=_p A (B is polynomial time reducable to A
+	
+		Takeaways:
+			-any NP-complete problem can be polynomial time reduced to other any other NP-complete problem
+		-Cook-Levin theorem-gives SAT as first NP-complete problem
+		
+		-if any NP-hard problem ha a poly_time alg, P=NP (OPEN QUESTION)
+		-if P!=NP, then an NP-Hard problem CANNOT have a polynomial time algorithm
+
+		-CircuitSAT, SAT, and 3SAT are all NP-Complete
+			
+
+	Proorf that Problem A is NP-Complete
+		1- Show A is element of NP (certificate, verifiers, ...etc)
+		2-Show B<=_A for some NP-hard problem B
+
+	Proof that Independendt SEt is NP-hard
+		1- Shown in last class
+		2- 3SAT is in NP-Hard => all problems B in NP, V<=_p 3SAT
+			If we prove that 3SAT <=_p IS, then for all B in NP, B<=_IS
+			1-Translation--		  
+				3SAT Input, sets of three clauses, C_1 AND C_2 AND C_3 AND ... C_m
+				-convert to sets:
+					-each clause becomes a set of three variables
+					-across all clauses, b/w an X_i make a set with all X_i's 
+		k=m
+
+		3- 3SAT is yes <=> IS is yes
+			=> Assume 3SAT has a satisfying assignment of variables. Then at least one variable evaluation in each C is true
+			Pick one satisfied variable in each clause gadget. Call this set of all chosen variables S. |S| = M because we has m clause gadgets
+
+
+
+
+ 

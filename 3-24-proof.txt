@@ -1,0 +1,68 @@
+Outline:
+   -Proof of correctness for dynamic interval scheduling problem
+   -word separation problem
+   -edit distance
+
+
+	-Proof of Correctness:
+		-Thm: opt[i] contains the Max value for any subset of the first i jobs by finish time
+		-Base case i=1  opt[i]=v_1
+		-this is best from subset of {J_1}
+		-Inductive hypothesis. Suppose opt[i-1] contains the best value for jobs in the subset {J_1...J_i-1}
+		-Inductive Step: max calue has two cases:
+			1- i is not in subset. max value is same as that for {J_1...J_i-1}. This is in opt[i=1] by I.H.
+			2-J_i is in the subset. opt[i]=v_i + opt[j] - j is the latest index of job that can be scheduled along with J_i
+				f_j <= s_i
+			3. show opt[j] is the optimal value for that subset of jobs {J_1...J_j} by I.H.
+			4. The alg choses max of opt[i-1] and opt[j]+v_i, so opt[i] is correct
+	
+	-Dynamic Programming
+		-Bottom Up
+			-fill in table in increasing order
+		-Top-Down
+			-solve problems recursively
+			-check if already solved, record answer
+			-this line above ^^^ is memoization. Records a "memo"
+	-Word Separation
+		-input String, and English Dictionary (way to check if substring is word)
+		-output: max# of words string can be split into
+	-
+
+
+	global results, dict 
+	def word_count(text, begin):
+		if begin e results:					^^^^memoization
+			return results[begin]				^^^^memoization
+		if text[begin:] e dict:
+			words=1
+		else
+			words=-(infinity)
+		for split in range(begin+1, length+1)
+			if text[begin:split] e dict:
+				rest = word_count(text, split)
+				if rest+1 > words:
+					words= rest+1
+		resulst[begin]=words					^^^^memoization
+		return words
+
+
+
+
+	2-dimension DP
+	Example: Edit Distance
+	-input: 2 strings x[1...n]  y[1...m]
+	-output: edit distance= min # of operations to change x to y
+	-edits:insertion, deletion, substitution
+	(comparable to spellcheck)
+
+
+	
+
+	E(i, j) = min(1+E(i-1, j), 1+E(i, j-1), diff(i,j)+E(i-1, j-1))
+
+
+
+
+
+
+

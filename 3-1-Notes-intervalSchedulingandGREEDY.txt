@@ -1,0 +1,37 @@
+Outline:
+  -interval Scheduling
+  -greedy algs
+  -stays ahead proof
+
+  -IntervalSchedulingProblem
+         -set of requests ri=(si,fi)
+         -requests ri and rj are compatible
+              -iff fi<sj or fj<si (they don't run at the same time)
+         -a collection of requests are compatible if all of the pair are compatible             
+         -goal:
+            -find the largest compatible set 
+  -Greedy Algs
+        -makes the best choice in the moment
+        -sort problem by criteria and then process in sorted order
+
+           GreedyIntervalScheduling(Requests):
+           S={}
+           Requests = requests.sort(by criteria)
+           for request in requests
+              if req is compatible with S
+                  s.add(req)
+
+
+   -Greedy Stays Ahead Proof
+         Compage set G of requests chosen by greedy alg to a hypothetical set H that is optimal
+
+        G={g1, ..., gk}, H={h1, ... hl} we prove, k>=l
+        want to show k >= l |G| >= |H|
+
+         
+         Lemma: i<=k implies fgi <= fhi
+         Base case: i=1, Greedy alg chose request g1 with minimum finishing time. h1 cnnot finish earlier.
+                h1 cannot finish earlier. fg1 <= fh1
+        Inductive Hypothesis: Lemma holds up to i 
+        Inductive Step: [Show fg+1 <= fh+1]
+        greedy alf chooses rj w/ fgi <= sj

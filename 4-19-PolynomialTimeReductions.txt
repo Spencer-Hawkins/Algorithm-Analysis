@@ -1,0 +1,72 @@
+Outline:
+-SC Problem
+-VC <=_p SC
+-NP
+-Review will cover from greedy Alg to Linear Programming
+
+
+
+
+	-SC Problem
+	   input: 
+		- set U
+		- collection of subsets S={S_1, S_2, S_3,... S_M}, where S_i is subset of U
+		- integer K
+	   output:
+		-is there a size-k set cover?
+		-a T subset of S s.t. U s_i =U, 
+	   U ={ cat, hat, bed, bad, red, bat, bot}
+	   S_1 = {bot}
+	   S_2 = {bd bad hat}
+	   S_3 = {cat hat bat}
+	   S_4 = {bed red}
+	   S_5 = {cat hat bat bot}
+		Is Set Cover for K values of 3, 4, and 5. But no Set Cover for K of 1, or 2.
+
+		
+	-VC <=_p SC
+
+		ALG M:
+		1) Given G = (V, E) and k for VC, 
+			build U = E, S = {S_v for all u in V},
+			where S_v contains all of v's edges S_v = { (u, v) element of E} ; k'=k
+		2) Translation is polynomial
+			-U=E O(m)
+			-construct s_v's O(m*n)
+			-k'=k O(1)
+		3) yes iff yes
+			-VC(G ,k) = yes <=> SC(U, S, k') = yes
+				(=>) IF, if C is subset of V is a vertex cover of G, then T = S_v for all V elements of C} is a set cover of U
+					Because S_v contains all of v's edges, every e element of E covered by C is covered by S_v in U
+					|C|=|T|, so k=k'
+				(<=) ONLY If, if T subset of S is a set cover of U, then a set C={v: S_v element of T} is a vertex cover of G. Because v covers all edges 
+					corresponding to elements in S_v, every e elment of U covered by S_v will be covered by v in G.
+					|T|=|C|, k'=k.
+
+	-P/NP
+		-P is the set of decision problems that can be SOLVED in polymonial time
+		-NP is the set of decision problems that can be VERIFIEd in polynomial time
+		
+	   -To prove a problem A is in P:
+		1) Provide Alg F
+		2) Show F runs in polynomial time
+		3) Show F provides correct answer Yes/No for ANY problem instance a element of A
+
+	   -To prove a problem B is in NP:
+		1) show that for any b in B with a yes answer, there can be a polynomial length certificate C.
+		2) Provide a verifier V.
+		3) Show that V runs in polynomial time.
+		4) Show that V(v, c) outputs yes iff b is yes-instance and c is a valid certificate
+
+
+	-Independent Set, showing NP
+		-Independent Set(G, k)
+			1) certificate can be list of k independent vertices, O(n)
+			2) -check S subset of V, -check |s|>= k, -check vertices in S are independent
+			3) yes O(n^2 * m)
+			4) Case 1.
+				 b is no-instance. Any C will fail verifier in step two.
+			   Case 2.
+				 B is yes-instance, C is valid. Will pass all V's checks, output yes.
+			   Case 3.
+				 B is yes-instnace, but C certificate is invalid. Verifier will check invalid certificate

@@ -1,0 +1,32 @@
+Outline:
+-greedy
+-MST (minimum spanning tree)
+-Scheduling Problem
+-Feedback
+
+
+
+	-Greedy:
+		-chooses the best option at that moment
+		-Can be proved through "Greedy Stays Ahead" Proof
+			-The idea is that our greedy alg stays ahead of any arbitrary algorithm
+			-Lemma i<= k implies, fgi <= fhi
+		-last element in greedy set: g_k (want k>=l)
+			-assume (for contradiction) There exists additional element h_k+1
+			-then we know our greedy algorithm would have collected that by our lemma, hence G includes element h_k+1 (CONTRADICTION)
+
+	-MST (Minumum Spanning Tree):
+		-input: undirected Graph G=(V,E), edge weights
+		-output: a tree T=(V,E') w/E' element of E that minimies weight (T) = sem of edge weights
+			-add lowest weight edge that doesn't create a cycle which will build MST
+		-
+
+
+
+		-Excahnge Argument Proof
+			1- Remocing schedule gaps can only improve lateness
+				-Inversion is a pair of requests that are flipped in terms of deadline order 
+					(ri, rj) where rj scheduled earlier, but ri has an earlier deadline
+						sj<si dj<di
+			2- a gapless schedule w/ an inversion has a back-to-back inversion
+			3- swapping a back-to-back inversion can only improve lateness

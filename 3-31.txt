@@ -1,0 +1,73 @@
+Outline:
+	-Min Cut Problem
+	-Build on FordFulkerson
+	-Max-Flow Min-Cut Theorem
+
+
+
+	-Min Cut Problem
+		-Input: Directed graph G, capacities C
+			s, t in V source, sink
+		-Output: K, an s/t cut with minimum capacity
+
+
+		-An s/t cut in graph G = (V, E) is a partition of V  into K(s) and K(t) such that 
+			s is Source t is target/Sink
+			1- s in K(S), 
+			2- t in K(t), 
+			3- K(s) intersect K(t) = empty set, 
+			4- and K(s) union K(t) = the complete graph
+
+		The capacity of s/t cut k is cap(K)= sum of CApacity C(u,v) such that U is element of K(s) set and V is element of K(t) set
+
+		NET FLOW:
+			-is the sum of all flows from one partition to the other minus all the directional flows in the return direction
+
+
+	-FordFulkerson
+		def FordFulkerson(G, C, s, t):
+			f(e)=0 for all e in E
+			G_f = ResidualGraph(G, C, f)
+			P = AugmentingPath(G_f, s, t)
+			while( p != NULL):
+				b= min w_e in G_f #bottleNeckEdge
+			for each e in p:
+				if e in E:
+					f(e) = f(e) + b
+				else:
+					f(e) = f(e) - b
+
+
+
+	-Min Cut Alg
+		-f = FordFulkerson(G, C, s, t)
+		-G_f = ResidualGraph(G, C, f)
+		-set K(s) = BFS_Reachable(G_f, s)
+		-set K(t) = V\K(s) (everything else that's not in K(s) )
+
+		K(s)={a, b, s}
+		K(t)={c, d ,e, t}
+
+
+	-Max-Cut Min-Flow Theorem
+		-For problem (G, C, s, t), flow f, and cut K_f, the following are equivalent:
+			1) G_f has no augmenting path
+			2) K_f is a min cut
+			3) f is a max flow
+
+			net flow = sum of f(e) for all s-> t flow minus all f(e) for all t ->s flow :by definition
+			cap(k) = sum of C_e for all s->t edges :by definition
+			>= the sum of all f(e) for all s ->t edges :by capacity constraints
+			>= the sum of all f(e) for all s-> t edges minus the sum of all f(e) [edge flows] from t ->s :non-negative flow
+			= net flow
+			The capacity is greater than or equal to the flow for all S/T cuts
+			
+		Fact #1: capacity >= net flow for all s/t cuts
+			net flow S -> T + v    =   Rest + (s -> v) - (v -> s)
+			new flow = Rest + (V -> t) - (t -> v)
+			s+v T ->v = v ->s + v->T
+			s->v - v->s = v->t - t->v
+
+		Fact #2:
+			All s/t cuts have net flow = val(f)=f_out(s)
+			

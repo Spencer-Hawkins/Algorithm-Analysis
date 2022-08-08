@@ -1,0 +1,84 @@
+Outline:
+	-Max-Flow Min-Cut Proof
+	-constrained optimization
+	-linear programming
+
+
+	Max-Flow Min-Cut Proof:
+		-Facts:
+		 #1: capacity >= net flow for all s/t cuts
+		 #2: every s/t cut has net flow = val(f)
+		 #3: val(f) <= cap(k) for any cut in the graph
+
+		G_f has no augmenting paths =>
+			- K_f cut - S - every node reachable from s, T = all other nodes\
+			- sll original edges have weight - in residual graph across this cut
+			- no flow entering S
+			- For all (u, v) across K_f:
+			  -U is element of K(s) => f(u, v) = C_u,_v  ,   (because we only make cuts across bottleneck edges
+			  -v is element of K(t) =>> f(u, v) = 0  ,
+			   => cap(K_f)=net flow (K_f)=val(f)
+
+
+
+
+	Constrained Optimization:
+		-Chocolate Shop:
+			-Basic Bar $1 per bar		X_1
+			-Filled bar $6 per bar		X_2
+			-we can make 400 bars per day
+			-demand per day 200 basic, and 300 filled bars
+				-Objective Function: Maximize
+					X_1+6X_2
+				Subject to:
+					X_1+X_2<=400	&&
+					X_2<300		&&
+					x_1<200		&&
+					X_1, x_2 >= 0
+
+			-now add third product X_3 = Box of Truffles
+				-we need packaging for truffles (3) and for filled bar (1)
+				-Can only use 600 wrappers per day
+					p = X_1 + 6X_2 + 13X_3
+					X_3+X_1+X_2<=400	&&
+					X_2<300		&&
+					x_1<200		&&
+					X_2+3X_3 <= 600
+					X_1, X_2, X_3 >= 0
+						
+			200*13+200 = 2800
+300*6+100*13+ 2900
+
+
+
+	Linear Programming:
+		-We have a set of input that includes all our variables X_1, ... X_n
+		-Objective Function (needs to be a linear function)
+		-Constraints - Linear Functions
+		g_1(x_1....x_n)=a1x1+....a_1n x_n <= b_1
+		...
+		...
+		...
+		g_m(X_1... X_n) = a_m1 X_1+ ... a_mn X_n <= b_m
+
+		Output: Value for each X_i that
+			-satisfy constraints
+			-maximize objective function
+		OR "Unbounded"   OR "infeasile"
+
+		1-D LP:
+			max 3x_1
+			subject to:   
+				x_1 >= 2
+				x_2 <= 5
+			feasible region
+				x_1 <=5
+				x_2 <=1
+			"infeasible"
+		-Simplex algorithm searches for most increased value vertex on linear programming graph
+
+
+
+
+
+

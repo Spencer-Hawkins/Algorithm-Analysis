@@ -1,0 +1,51 @@
+Outline:
+	-Reduction
+	-Duality
+
+
+
+	Reduction:
+		-Variables: f_e for all e (edge) in E (Edge set)	
+		-maximize the sum of all flows from s to v  (source to vertex)
+		-subject to: 
+			f_e <+ c_e for all e in E
+		
+
+		-feasible
+			feasible
+				-show that feasible region is not empty
+				-set all flows equal to zero
+			bounded
+				-show upper bound on optimization function
+			optimal 
+				-optimal LP Value = solution to maxflow
+				-argue correctness of optimization function, constraints
+
+
+	Duality:
+		-certificate of optimality
+			-like max-flow/min-cut
+		-any linear max problem has dual min problem
+
+
+		max X_1 + 6X_2
+	subject to:
+		1- X_1 <= 2--
+		2- X_2<= 300
+		3- X_1+X_2 <= 400
+		   X_1, X_2 >= 0
+
+	Answer: X_1 = 100
+		  X_2 = 300
+	Optimal val: 1,900
+
+		6 * (2) 6X_2 <= 1800
+		    (1) X_1 <= 200
+		X_1 + 6X_2 <= 2000
+
+			Duality Theorem:
+				-If a linear program has a bounded optimum, then do does its dual and the two optimal values coincide
+				-duality gap is zero
+				
+
+		

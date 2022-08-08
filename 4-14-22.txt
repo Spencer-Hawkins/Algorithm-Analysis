@@ -1,0 +1,83 @@
+Outline:
+-Simplex Correctness
+-Classifying Problems
+-Example reduction
+
+
+	Simplex Correctness:
+		-Feasible- pre-processing- Initial Step, find a feasible solution. Handles whether or not there exists a feasible solution
+		-Unbounded- handled by Step (3)
+		-optimal value- see Thm 29.10 in book
+			-Key takeAways from theorem in book
+			    -PART1 of proof
+				-simplex returns feasible solution with value v'-z
+				-all slack forms are equivalent
+				-so solution gives z = v' in orignal z
+						-These past three steps are PART1
+			    -PART2 of proof
+				-dual solution also returns v'
+				-duality theorem + Parts 1 & 2 => if simplex returns a solution, its value v' is optimal 
+
+
+	Classifying Problems:
+		- decision : output is yes/no  
+			(Connectivity-- can we get from s to t in given graph G)
+		- Optimization : find the best value 
+			(Distance : shortest distance s-> t)
+			(interval scheduling : max # of jobs)
+		- search : output-identify specific object
+			(shortestPath : path with shortest distance)
+		- 
+
+
+		-MST (minimum spanning tree)
+			Search: find a minimum spanning tree
+			Optimizations: what is the minimum cost for our minimum spanning tree
+			Decision: is there a spanning tree w/ cost <= k ?
+
+
+		-Max Flow
+			Search: Find a max flow (Set of values for all edges)
+			Optimization: What is the maximum flow? Val(f)
+			Decision: Is there a MaxFlow with val(f) >= k
+			
+
+
+	Example Reduction:
+		Def-
+			A Polynomial-time reduction from decision problem P to decision problem Q is a polynomial-time alg M that
+			converts any instance p of P to an instance q = M(p) of Q such that	
+		      	answer(q) = yes <=> answer(p) = yes
+
+			Def. P reduces to Q, denoted P <=_p Q if there exists a polynomial-time reduction from P to Q
+			Intuition: P <=_p Q => Q is at least as difficult as P
+		Conclusions:
+			Direct	      -if there exists polt-tie alg for Q, then there exists poly-time alg for P
+			Contra Positive   -if there's no poly-time alg for P, there's no poly-time alg for Q
+
+		Transforming Vertex Cover to Independent Set:
+		
+			Vertex Cover (VC):
+				input: undireted graph G(e,v)
+					-integer k
+				output: Is there a size-k vertex cover
+
+			Independendt set (IS);
+				input: -undirected graph G=(v, E)
+					-integer K
+				output: is there a size -k independent set?
+					S subset of V s.t. for all u, v elements of S (u, v) does not exist in E
+
+			Steps for transformation:
+			   Theorem. VC <=_p IS	
+				1- Find M.
+					Fiven F = (V, E) and k for VC, build G' = G, k' = |V|-k for IS
+				2- M takes polynomial time
+					show that. Copy over graph and compute k' which takes constant time 
+				3- show that we get yes for one problem if and only if we get a yes for the transformed problem
+					VC(G, k) = yes <=> IS(G', k') = yes
+					(=>) S is subset of V is a vertex cover of G, then for all e in E (at least) one end of e is in S.
+						all its edges must connect to vertices in S, so it is not adjacent to any other node in V\. 
+						This set V\S is an independent set by definition. |S| = k, so |V\S| = |V|-k = k'
+					(<=) For any v in V\S, 
+					

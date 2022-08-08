@@ -1,0 +1,43 @@
+Overview:
+ -dyanmic programming
+ -weighted interval scheduling
+ 
+
+
+ -Dynamic programming
+	-used for problems w/ distinct subproblems
+	-typically applied to optimization problems
+		1-characterize structure of optimal solution
+		2-define calue of optimal solution based on subproblem solutions
+		3-compute value of optimal solution (frequently minimum or maximum solution)
+		4-compute optimal solution from computed info
+
+
+  -Weighted Interval Scheduling (one variation)
+	-input: n jobs(s_i, f_i, v_i)
+		-start time, finish time, and v is weight
+	-Output: highest value non-overlapping subset
+  		-What about a greedy algorithm?
+		-in order, accept or reject
+		
+  1-Order jobs by finishing time-- subproblems are earlier time chunks
+  2-Considering job i. Two cases:
+	A-optimal solution doesn't use job i. Then optimal solution uses only 1...i-1
+	B-if optimal solution does use job i, then the optimal solution uses i+optimal solution for jobs ending before s_i
+    Opt[i]=max(opt[i-1], v_i+opt[j])
+  3-Build up solution. def value_schedule(jobs):
+	-sort jobs by f
+	-opt = array of n zeroes
+	-for each job i:
+		j= last job to finish before s_i (use binary search to find in logarithmic time)
+			otherwise set j=-1
+		v=opt[j] or 0 if j=-1
+		if v+v_i >= opt[i-1]
+			opt[i]=v+v_i
+		else:
+			opt[i]=opt[i-1]
+		return opt[n]
+
+opt[2, 2, 3, 4, 4, 4, 7, 7, 11, 9, 10]
+    1. 2. 3. 4. 5. 6. 7. 8, 9, 10, 11
+		

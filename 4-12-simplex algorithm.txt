@@ -1,0 +1,88 @@
+Outline:
+	-simplex algorithm
+	-assumptions
+	-correctness
+
+
+
+	-Simplex Algorithm
+		1- convert LP to slack form, 
+			set z= objective function,
+			max z = x_1 + 6x_2,
+		s.t.
+			x_3 = 200-x_1
+			x_4 = 300 - x_2
+			x_5 = 400 - x_1 - x_2
+			x_1 ... x_5 >= 0
+		Basic variables-(left)
+					Non-Basic Variables-(Right)	
+			
+			solution: (0, 0, 200, 300, 400)
+			z = 0	
+		2-Find c_j > 0 to get entering variable X_e = X_j
+		3- Find leaving varable x_l based on tightest constraint on X_e
+			x_e = x_1
+				1- x_1 <= 200
+				2- N/A
+				3- x_1 <= 400
+					implies x_l = X_3
+		4- Perfrom Pivot, to swam X_e and X_l
+			Max z,  z = 200-x_3 + 6x_2
+			x_1 = 200 - x_3
+			x_4 = 300 - x_2
+			x_5 = 400 - (200 - x_3) - x_2
+			x_1 ... x_5 >= 0
+			current basic solution: (200, 0, 0, 300, 200)
+			z = 200
+		5- Repeat 2-4 until no more entering variable
+
+			pivot 1
+				x_e = x_2
+			1 - N/A
+			2 - 300 >= x_2
+			3 - 200 >= x_2
+			x_5 = x_l
+
+			Solve constraints switching x_5 and x_2
+
+			Max z,  z = 200-x_3 + 6 (200 + x_3 - x_2)
+			x_1 = 200 - x_3
+			x_4 = 100 - x_3 + x_5
+			x_2 = 200 + x_3 - x_5
+			
+			x_1 ... x_5 >= 0
+			current basic solution: (200, 200, 0, 100, 0)
+			z = 200  (ACTUALLY 1,400)
+				
+
+			pivot 2
+				x_e = x_3
+			find x_l / limiting constraint
+
+			1 - 200
+			2 - 100
+			3 - 200
+
+			x_4 = x_l
+
+			x_1 = 100 - x_4 + x_5
+			x_3 = 100 - x_4 + x_5
+			x_2 = 300 + x_4 + x_5 - x_5
+			
+			Set x_4 and x_5 = 0 
+			Optimal Solution (100, 300, 100, 0, 0) z = 1900
+
+
+	-Assumptions
+		-started w/ basic solution that was FEASIBLE
+		-solution is bounded
+			-otherwise, in (3) return 'unbounded'
+		-we can avoid 'cycling'
+			-some linear programs would repeatedly swap variable from basic to non-basic and etc...
+		-we can terminate the algorithm
+
+
+
+
+
+	-Correctness
